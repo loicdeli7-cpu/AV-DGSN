@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D.G.S.N – Délégation Générale à la Sûreté Nationale | Portail Officiel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   PALETTE OFFICIELLE D.G.S.N CAMEROUN
+   ============================================================ */
+:root {
+  --navy:        #0b1d42;
+  --navy2:       #112254;
+  --navy3:       #192d6a;
+  --navy4:       #1d3480;
+  --red:         #c8102e;
+  --red-h:       #e0132f;
+  --gold:        #f5c518;
+  --gold2:       #d4a010;
+  --green-cam:   #007a3d;
+  --white:       #ffffff;
+  --light:       #cdd4ea;
+  --muted:       #7a8baf;
+  --border:      rgba(255,255,255,0.10);
+  --border2:     rgba(255,255,255,0.20);
+  --font-h: 'Merriweather', Georgia, serif;
+  --font-b: 'Source Sans 3', sans-serif;
+  --font-m: 'Source Code Pro', monospace;
+  --r: 7px;
+  --sh: 0 10px 50px rgba(0,0,0,0.55);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:15px}
+body{background:var(--navy);color:var(--white);font-family:var(--font-b);min-height:100vh;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+input,textarea,select{
+  font-family:inherit;background:rgba(255,255,255,0.07);
+  border:1px solid var(--border);color:var(--white);
+  border-radius:var(--r);padding:10px 14px;outline:none;width:100%;
+  transition:border-color .2s,background .2s
+}
+input::placeholder,textarea::placeholder{color:var(--muted)}
+input:focus,textarea:focus{border-color:var(--gold);background:rgba(255,255,255,0.11)}
+select option{background:var(--navy2)}
+
+/* ============================================================
+   ① BANDE TRICOLORE OFFICIELLE : VERT – ROUGE★ – JAUNE
+      Drapeau du Cameroun : vert | rouge (avec étoile dorée) | jaune
+   ============================================================ */
+.tricolor {
+  display: flex; align-items: center;
+  height: 6px; flex-shrink: 0; position: relative;
+}
+.tc-v  { flex: 1; height: 100%; background: #007a3d; }
+.tc-r  { flex: 1; height: 100%; background: #c8102e; display:flex; align-items:center; justify-content:center; position:relative; }
+.tc-y  { flex: 1; height: 100%; background: #f5c518; }
+/* Étoile dorée au centre de la bande rouge */
+.tc-star {
+  position: absolute;
+  font-size: 8px; line-height:1;
+  color: #f5c518;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  text-shadow: 0 0 3px rgba(0,0,0,0.4);
+}
+
+/* ============================================================
+   ② TOP BAR INSTITUTIONNELLE
+   ============================================================ */
+.topbar {
+  background: #07122e;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: stretch; flex-wrap: wrap;
+  font-size: .71rem; min-height: 32px;
+  padding: 0 20px;
+}
+.tb-item {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 14px 5px 0;
+  color: var(--muted);
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.tb-item:last-of-type { border-right: none; }
+.tb-item .ico { font-size: .75rem; }
+.tb-item strong { color: var(--light); }
+.tb-item a { color: var(--muted); transition: color .15s; }
+.tb-item a:hover { color: var(--gold); }
+.tb-lang {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 6px; padding-left: 14px;
+}
+.lb {
+  padding: 2px 8px; border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.14);
+  font-size: .68rem; font-weight: 700; color: var(--muted);
+  cursor: pointer; transition: all .18s; letter-spacing: .04em;
+}
+.lb:hover, .lb.on { border-color: var(--gold); color: var(--gold); }
+
+/* ============================================================
+   ③ NAVBAR
+   ============================================================ */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: stretch;
+  background: var(--navy2);
+  border-bottom: 3px solid var(--red);
+  box-shadow: 0 4px 22px rgba(0,0,0,0.5);
+}
+.nb-brand {
+  display: flex; align-items: center; gap: 13px;
+  padding: 8px 22px; cursor: pointer;
+  background: #0c1940;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0; transition: background .2s;
+}
+.nb-brand:hover { background: #101e4e; }
+.nb-text { line-height: 1.2; }
+.nb-sigla {
+  font-family: var(--font-h); font-size: 1.05rem; font-weight: 900;
+  color: var(--white); letter-spacing: .06em;
+}
+.nb-full {
+  font-size: .57rem; color: var(--gold); letter-spacing: .04em;
+  text-transform: uppercase; font-weight: 700; margin-top: 1px;
+}
+.nb-pays {
+  font-size: .54rem; color: var(--muted); letter-spacing: .05em;
+  text-transform: uppercase; margin-top: 1px;
+}
+.nb-nav { display: flex; align-items: stretch; flex: 1; padding: 0 6px; }
+.ni {
+  display: flex; align-items: center;
+  padding: 0 15px;
+  font-size: .78rem; font-weight: 700; color: var(--light);
+  text-transform: uppercase; letter-spacing: .05em; cursor: pointer;
+  border-bottom: 3px solid transparent; margin-bottom: -3px;
+  transition: color .18s, border-color .18s;
+}
+.ni:hover { color: var(--white); border-bottom-color: rgba(245,197,24,.4); }
+.ni.on { color: var(--white); border-bottom-color: var(--gold); }
+.nb-right {
+  display: flex; align-items: center; gap: 10px; padding: 0 18px;
+  flex-shrink: 0; border-left: 1px solid rgba(255,255,255,0.07);
+}
+.btn-cnx {
+  padding: 8px 22px; border-radius: 4px;
+  background: var(--red); color: #fff;
+  font-size: .79rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em;
+  transition: background .2s;
+}
+.btn-cnx:hover { background: var(--red-h); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative; overflow: hidden;
+  min-height: calc(100vh - 114px);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 70px 28px;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 65% at 50% -8%, rgba(17,34,84,.96) 0%, transparent 68%),
+    radial-gradient(ellipse 45% 38% at 88% 88%, rgba(200,16,46,.12) 0%, transparent 55%),
+    linear-gradient(165deg, var(--navy2) 0%, var(--navy) 48%, #070e24 100%);
+}
+.hero-bg::before {
+  content:'';position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(255,255,255,.015) 60px),
+    repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(255,255,255,.015) 60px);
+}
+.hero-bg::after {
+  content:'';position:absolute;top:-130px;right:-130px;
+  width:750px;height:750px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,16,46,.09) 0%,transparent 70%);
+}
+.hero-c { position:relative;z-index:1;max-width:820px; }
+
+/* Mini-drapeau héro */
+.hero-flag { display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:28px; }
+.hf-b { height:10px;width:44px; }
+
+.hero-badge {
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 18px;border-radius:3px;
+  background:rgba(200,16,46,.13);border:1px solid rgba(200,16,46,.32);
+  font-size:.69rem;font-weight:700;color:#f07888;
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px;
+}
+.hero-badge::before{content:'●';font-size:.42rem;color:var(--red);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+.hero-title {
+  font-family:var(--font-h);
+  font-size:clamp(1.75rem,4.2vw,3.4rem);
+  font-weight:900;line-height:1.18;color:var(--white);
+  margin-bottom:20px;text-shadow:0 3px 26px rgba(0,0,0,.55);
+}
+.hero-title .ac { color:var(--gold); }
+.hero-sub {
+  font-size:1rem;font-weight:300;color:var(--light);
+  line-height:1.8;max-width:600px;margin:0 auto 38px;
+}
+.hero-btns { display:flex;gap:14px;justify-content:center;flex-wrap:wrap; }
+.btn-p {
+  padding:14px 32px;border-radius:4px;
+  background:var(--red);color:#fff;font-weight:700;
+  font-size:.88rem;text-transform:uppercase;letter-spacing:.06em;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(200,16,46,.42);
+}
+.btn-p:hover{background:var(--red-h);transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,16,46,.52)}
+.btn-g {
+  padding:14px 32px;border-radius:4px;
+  border:2px solid var(--gold);color:var(--gold);
+  font-weight:700;font-size:.88rem;text-transform:uppercase;letter-spacing:.06em;
+  transition:all .2s;
+}
+.btn-g:hover{background:var(--gold);color:var(--navy)}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats-s {
+  background:#07122e;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:36px 28px;
+}
+.stats-i {
+  max-width:1040px;margin:0 auto;
+  display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:28px;
+}
+.stat { text-align:center; }
+.stat-v{font-family:var(--font-h);font-size:2.4rem;font-weight:900;color:var(--gold);line-height:1}
+.stat-l{font-size:.69rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:7px;font-weight:700}
+.stat-sep{width:1px;height:46px;background:var(--border)}
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+.sec-w{max-width:1160px;margin:0 auto;padding:58px 28px;width:100%}
+.sec-hd{text-align:center;margin-bottom:42px}
+.sec-tag{display:inline-block;padding:4px 14px;border-radius:3px;background:var(--red);color:#fff;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.sec-ti{font-family:var(--font-h);font-size:1.75rem;font-weight:900;margin-bottom:8px}
+.sec-su{font-size:.87rem;color:var(--muted);max-width:460px;margin:0 auto}
+.sec-rule{width:54px;height:3px;margin:14px auto 0;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:2px}
+
+.srv-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.srv-c {
+  background:var(--navy2);border:1px solid var(--border);
+  border-top:3px solid var(--red);border-radius:var(--r);
+  padding:28px 22px;cursor:pointer;position:relative;overflow:hidden;
+  transition:border-top-color .2s,transform .2s,box-shadow .2s;
+}
+.srv-c::after{content:'';position:absolute;top:0;right:0;width:90px;height:90px;background:radial-gradient(circle,rgba(245,197,24,.06) 0%,transparent 70%)}
+.srv-c:hover{border-top-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 46px rgba(0,0,0,.42)}
+.srv-ic{width:52px;height:52px;border-radius:50%;background:rgba(200,16,46,.13);border:1px solid rgba(200,16,46,.26);display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin-bottom:16px}
+.srv-ti{font-family:var(--font-h);font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px}
+.srv-de{font-size:.8rem;color:var(--muted);line-height:1.65}
+.srv-mo{margin-top:14px;font-size:.77rem;color:var(--gold);font-weight:700}
+
+/* ============================================================
+   AUTH
+   ============================================================ */
+.auth-p{flex:1;display:flex;align-items:center;justify-content:center;padding:50px 20px;background:radial-gradient(ellipse 60% 55% at 50% 0%,rgba(17,34,84,.88) 0%,transparent 65%),var(--navy);min-height:calc(100vh - 114px)}
+.auth-bx{width:100%;max-width:426px;background:var(--navy2);border:1px solid var(--border);border-top:4px solid var(--red);border-radius:var(--r);padding:38px 34px;box-shadow:var(--sh)}
+.auth-hd{text-align:center;margin-bottom:26px}
+.auth-ti{font-family:var(--font-h);font-size:1.42rem;font-weight:900;margin-top:14px}
+.auth-su{font-size:.77rem;color:var(--muted);margin-top:5px;line-height:1.5}
+.auth-hr{height:1px;background:var(--border);margin:20px 0}
+.tabs{display:flex;background:rgba(0,0,0,.2);border-radius:5px;padding:4px;margin-bottom:22px}
+.tab{flex:1;padding:8px;border-radius:4px;font-size:.79rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;transition:all .2s}
+.tab.on{background:var(--red);color:#fff}
+.fg{margin-bottom:15px}
+.fl{font-size:.71rem;font-weight:700;color:var(--light);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.role-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.ro{padding:12px 8px;border-radius:var(--r);border:1px solid var(--border);text-align:center;cursor:pointer;background:rgba(0,0,0,.14);transition:all .2s}
+.ro.on{border-color:var(--gold);background:rgba(245,197,24,.08)}
+.ro .ri{font-size:1.35rem;margin-bottom:4px}
+.ro .rn{font-size:.71rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.ro.on .rn{color:var(--gold)}
+.auth-btn{width:100%;padding:13px;border-radius:4px;background:var(--red);color:#fff;font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.06em;transition:background .2s;margin-top:8px}
+.auth-btn:hover{background:var(--red-h)}
+.auth-note{text-align:center;font-size:.73rem;color:var(--muted);margin-top:13px}
+.lnk{color:var(--gold);cursor:pointer;font-weight:700}
+.lnk:hover{text-decoration:underline}
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+.dash-sh{display:flex;flex:1;min-height:calc(100vh - 114px)}
+.dash-sd{width:226px;flex-shrink:0;background:var(--navy2);border-right:1px solid var(--border);display:flex;flex-direction:column}
+.sd-u{padding:18px 15px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:11px}
+.sd-av{width:42px;height:42px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem;flex-shrink:0;border:2px solid rgba(255,255,255,.14)}
+.sd-nm{font-weight:700;font-size:.84rem;line-height:1.2}
+.sd-rl{font-size:.63rem;color:var(--gold);text-transform:uppercase;letter-spacing:.07em;margin-top:2px;font-weight:700}
+.sd-nav{flex:1;padding:10px 7px;overflow-y:auto}
+.sd-sec{font-size:.59rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;padding:12px 10px 5px}
+.sd-it{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:4px;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer;border-left:3px solid transparent;transition:all .18s}
+.sd-it:hover{background:rgba(255,255,255,.04);color:var(--white)}
+.sd-it.on{background:rgba(200,16,46,.13);color:var(--white);border-left-color:var(--red)}
+.sd-ic{font-size:.93rem;width:20px;text-align:center}
+.n-pill{margin-left:auto;background:var(--red);color:#fff;border-radius:10px;padding:1px 7px;font-size:.61rem;font-weight:900}
+.sd-ft{padding:10px 7px;border-top:1px solid var(--border)}
+
+.dash-bd{flex:1;overflow-y:auto;padding:30px 26px;background:var(--navy)}
+.kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(176px,1fr));gap:15px;margin-bottom:26px}
+.kpi{background:var(--navy2);border:1px solid var(--border);border-left:4px solid var(--red);border-radius:var(--r);padding:18px 20px;position:relative;overflow:hidden}
+.kpi.k2{border-left-color:var(--gold)}
+.kpi-ic{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:1.85rem;opacity:.09}
+.kpi-v{font-family:var(--font-h);font-size:2.05rem;font-weight:900;line-height:1}
+.kpi-l{font-size:.69rem;color:var(--muted);margin-top:7px;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:3px;font-size:.69rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.bp{background:rgba(245,197,24,.13);color:var(--gold);border:1px solid rgba(245,197,24,.27)}
+.bo{background:rgba(0,160,60,.13);color:#4fd97a;border:1px solid rgba(0,160,60,.27)}
+.br{background:rgba(200,16,46,.13);color:#ff7080;border:1px solid rgba(200,16,46,.27)}
+.bi{background:rgba(255,255,255,.07);color:var(--light);border:1px solid var(--border2)}
+
+.s-lb{display:flex;align-items:center;gap:10px;font-family:var(--font-h);font-size:1rem;font-weight:700;color:var(--white);margin:22px 0 13px}
+.s-lb::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* Dossier */
+.dos-c{background:var(--navy2);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:14px}
+.dos-hd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
+.dos-nm{font-weight:700;font-size:.96rem}
+.dos-rf{font-family:var(--font-m);font-size:.75rem;color:var(--muted);margin-top:3px}
+
+/* Timeline */
+.tl{display:flex;position:relative}
+.tl::before{content:'';position:absolute;top:13px;left:28px;right:28px;height:2px;background:var(--border)}
+.tl-s{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1}
+.tl-d{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:.7rem;margin-bottom:8px;transition:all .3s}
+.tl-d.done{background:var(--green-cam);border-color:var(--green-cam);color:#fff;font-size:.84rem}
+.tl-d.curr{background:var(--gold);border-color:var(--gold);color:var(--navy);font-weight:900;animation:glw 1.6s ease-in-out infinite}
+@keyframes glw{0%,100%{box-shadow:0 0 0 0 rgba(245,197,24,.5)}50%{box-shadow:0 0 0 9px rgba(245,197,24,0)}}
+.tl-l{font-size:.62rem;color:var(--muted);text-align:center;max-width:72px;line-height:1.35;font-weight:600}
+.tl-l.curr{color:var(--gold)}
+
+/* Notifs */
+.nb{background:var(--navy2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.nr{display:flex;gap:13px;padding:15px 18px;border-bottom:1px solid rgba(255,255,255,.033);transition:background .14s}
+.nr:last-child{border-bottom:none}
+.nr:hover{background:rgba(255,255,255,.022)}
+.nd{width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:6px;flex-shrink:0}
+.nd.r{background:var(--muted)}
+.nt{font-size:.81rem;color:var(--light);line-height:1.5}
+.nt-t{font-size:.69rem;color:var(--muted);margin-top:3px}
+
+/* Table */
+.tw{background:var(--navy2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.dt{width:100%;border-collapse:collapse;font-size:.8rem}
+.dt thead th{text-align:left;padding:11px 15px;background:rgba(0,0,0,.22);color:var(--muted);font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--border)}
+.dt tbody td{padding:12px 15px;border-bottom:1px solid rgba(255,255,255,.027);color:var(--light)}
+.dt tbody tr:last-child td{border-bottom:none}
+.dt tbody tr:hover td{background:rgba(255,255,255,.022)}
+.ab{padding:4px 10px;border-radius:3px;font-size:.69rem;font-weight:700;background:rgba(17,34,84,.7);color:var(--light);border:1px solid var(--border);cursor:pointer;transition:all .18s}
+.ab:hover{background:var(--navy3);color:var(--white)}
+.ab.del{background:rgba(200,16,46,.12);color:#ff7888;border-color:rgba(200,16,46,.27)}
+.ab.del:hover{background:rgba(200,16,46,.27)}
+
+/* Form card */
+.fc{background:var(--navy2);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-bottom:22px}
+.fc h3{font-family:var(--font-h);font-size:1rem;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.btn-go{padding:11px 24px;border-radius:4px;background:var(--red);color:#fff;font-weight:700;font-size:.83rem;text-transform:uppercase;letter-spacing:.05em;transition:background .2s}
+.btn-go:hover{background:var(--red-h)}
+.btn-sc{padding:11px 24px;border-radius:4px;border:1px solid var(--border2);color:var(--light);font-weight:700;font-size:.83rem;text-transform:uppercase;letter-spacing:.05em;transition:all .2s}
+.btn-sc:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ============================================================
+   ACTUALITÉS
+   ============================================================ */
+.page-banner{background:var(--navy2);border-bottom:3px solid var(--red);padding:28px 28px 22px}
+.page-banner h1{font-family:var(--font-h);font-size:1.72rem;font-weight:900}
+.page-banner p{color:var(--muted);font-size:.87rem;margin-top:5px}
+.news-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:20px;padding:28px 28px;max-width:1160px;margin:0 auto}
+.nc{background:var(--navy2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s}
+.nc:hover{transform:translateY(-4px);box-shadow:0 14px 46px rgba(0,0,0,.5);border-color:var(--gold)}
+.nc-th{height:128px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;background:linear-gradient(135deg,var(--navy3),var(--navy2));border-bottom:2px solid var(--red)}
+.nc-bd{padding:16px}
+.nc-cat{display:inline-block;padding:3px 8px;border-radius:3px;background:var(--red);color:#fff;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:9px}
+.nc-ti{font-family:var(--font-h);font-size:.9rem;font-weight:700;line-height:1.4;color:var(--white);margin-bottom:7px}
+.nc-ex{font-size:.77rem;color:var(--muted);line-height:1.65}
+.nc-ft{display:flex;justify-content:space-between;margin-top:11px;font-size:.69rem;color:var(--muted)}
+
+/* ============================================================
+   CHATBOT
+   ============================================================ */
+.fab{position:fixed;bottom:26px;right:26px;z-index:200;display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:28px;background:var(--red);color:#fff;font-weight:700;font-size:.83rem;box-shadow:0 6px 34px rgba(200,16,46,.52);transition:transform .2s,box-shadow .2s,background .2s}
+.fab:hover{transform:translateY(-2px);background:var(--red-h);box-shadow:0 10px 44px rgba(200,16,46,.6)}
+.fab-n{position:absolute;top:-5px;right:-5px;width:18px;height:18px;border-radius:50%;background:var(--gold);color:var(--navy);font-size:.61rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+
+.cw{position:fixed;bottom:86px;right:26px;z-index:200;width:376px;max-height:572px;display:flex;flex-direction:column;background:var(--navy);border:1px solid var(--border);border-top:3px solid var(--red);border-radius:var(--r);box-shadow:0 22px 66px rgba(0,0,0,.65);transform:scale(.9) translateY(20px);transform-origin:bottom right;opacity:0;pointer-events:none;transition:transform .28s cubic-bezier(.34,1.56,.64,1),opacity .2s}
+.cw.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+.c-hd{display:flex;align-items:center;gap:12px;padding:13px 15px;background:var(--navy2);border-bottom:1px solid var(--border);flex-shrink:0}
+.c-av{width:36px;height:36px;border-radius:50%;background:var(--red);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.c-hn{font-weight:700;font-size:.85rem}
+.c-hs{font-size:.66rem;color:#4fdc7c;display:flex;align-items:center;gap:4px}
+.c-hs::before{content:'●';font-size:.42rem;animation:pulse 2s infinite}
+.c-x{margin-left:auto;color:var(--muted);font-size:1.12rem;cursor:pointer;padding:4px;transition:color .15s}
+.c-x:hover{color:var(--white)}
+.c-bd{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px;scroll-behavior:smooth}
+.c-bd::-webkit-scrollbar{width:3px}
+.c-bd::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.m{display:flex;gap:8px;max-width:91%}
+.m.u{align-self:flex-end;flex-direction:row-reverse}
+.m-av{width:27px;height:27px;border-radius:50%;flex-shrink:0;border:1px solid var(--border);background:var(--navy2);display:flex;align-items:center;justify-content:center;font-size:.75rem}
+.m.b .m-av{background:var(--red);border-color:var(--red);font-size:.88rem}
+.m-bb{padding:10px 13px;border-radius:10px;font-size:.8rem;line-height:1.55}
+.m.b .m-bb{background:var(--navy2);border:1px solid var(--border);color:var(--light);border-bottom-left-radius:3px}
+.m.u .m-bb{background:var(--navy3);border:1px solid rgba(255,255,255,.14);color:var(--white);border-bottom-right-radius:3px}
+.m-t{font-size:.62rem;color:var(--muted);margin-top:3px}
+.c-su{display:flex;flex-wrap:wrap;gap:6px;padding:5px 13px 9px;flex-shrink:0}
+.cs{padding:5px 11px;border-radius:13px;border:1px solid var(--border2);font-size:.7rem;color:var(--light);cursor:pointer;transition:all .18s}
+.cs:hover{border-color:var(--gold);color:var(--gold);background:rgba(245,197,24,.06)}
+.c-ft{display:flex;gap:8px;padding:11px;border-top:1px solid var(--border);background:var(--navy2);flex-shrink:0}
+.c-in{flex:1;background:var(--navy);border:1px solid var(--border);border-radius:18px;padding:9px 14px;font-size:.8rem;color:var(--white);transition:border-color .2s}
+.c-in:focus{border-color:var(--gold);outline:none}
+.c-sb{width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .18s;font-size:.88rem}
+.c-sb:hover{background:var(--red-h)}
+.typing{display:flex;align-items:center;gap:4px;padding:8px 0}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:bnc .8s infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+@keyframes bnc{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.ft{background:#07122e;border-top:3px solid var(--red);padding:28px 28px 20px}
+.ft-i{max-width:980px;margin:0 auto}
+.ft-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:20px}
+.ft-b .ft-ti{font-family:var(--font-h);font-size:1rem;font-weight:900;color:var(--gold)}
+.ft-b .ft-fu{font-size:.71rem;color:var(--muted);margin-top:3px;line-height:1.55}
+.ft-b .devise{
+  display:inline-flex;align-items:center;gap:7px;
+  margin-top:10px;padding:5px 14px;border-radius:3px;
+  background:rgba(200,16,46,.13);border:1px solid rgba(200,16,46,.28);
+  font-size:.7rem;font-weight:700;color:#f07888;letter-spacing:.08em;text-transform:uppercase
+}
+.ft-cols{display:flex;gap:38px;flex-wrap:wrap}
+.ft-col h4{font-size:.71rem;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.ft-col a,.ft-col p{display:block;font-size:.75rem;color:var(--muted);margin-bottom:6px;line-height:1.5;transition:color .15s}
+.ft-col a:hover{color:var(--gold)}
+.ft-bot{border-top:1px solid var(--border);padding-top:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ft-bot p{font-size:.71rem;color:var(--muted)}
+/* Mini-drapeau footer */
+.ft-flag{display:flex;border-radius:2px;overflow:hidden}
+.ff{height:14px;width:22px}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+.tz{position:fixed;top:80px;right:18px;z-index:600;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{padding:11px 17px;border-radius:var(--r);font-size:.8rem;font-weight:600;display:flex;align-items:center;gap:10px;animation:sli .3s ease;box-shadow:0 6px 28px rgba(0,0,0,.5);pointer-events:all;max-width:340px}
+.toast.ok{background:#0a3d1c;border:1px solid #007a3d;color:#80ffb4}
+.toast.err{background:#3e0b14;border:1px solid var(--red);color:#ffb0bc}
+.toast.inf{background:var(--navy2);border:1px solid var(--border2);color:var(--light)}
+@keyframes sli{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:translateX(0)}}
+
+/* ============================================================
+   SPA / RESPONSIVE
+   ============================================================ */
+.shell{display:flex;flex-direction:column;min-height:100vh}
+.page{display:none;flex:1;flex-direction:column}
+.page.on{display:flex}
+@media(max-width:768px){
+  .dash-sd{display:none}
+  .ni{display:none}
+  .tb-item:not(:first-of-type){display:none}
+  .cw{width:calc(100vw - 14px);right:7px;bottom:76px}
+  .kpi-g{grid-template-columns:1fr 1fr}
+  .frow{grid-template-columns:1fr}
+  .ft-top{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ── CHAT FAB ─────────────────────────────────────────── -->
+<button class="fab" id="fabBtn" onclick="toggleChat()">
+  <span>💬</span><span>Assistant D.G.S.N</span>
+  <span class="fab-n" id="fabN">1</span>
+</button>
+
+<div class="cw" id="chatWin">
+  <div class="c-hd">
+    <div class="c-av">👮</div>
+    <div>
+      <div class="c-hn">Assistant Officiel D.G.S.N</div>
+      <div class="c-hs">En ligne – Service 24h/24</div>
+    </div>
+    <div class="c-x" onclick="toggleChat()">✕</div>
+  </div>
+  <div class="c-bd" id="cBd"></div>
+  <div class="c-su" id="cSu"></div>
+  <div class="c-ft">
+    <input class="c-in" id="cIn" placeholder="Posez votre question..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg();}">
+    <button class="c-sb" onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+<!-- TOASTS -->
+<div class="tz" id="tz"></div>
+
+<!-- ================================================================
+     SHELL PRINCIPAL
+================================================================ -->
+<div class="shell">
+
+  <!-- ① BANDE TRICOLORE : VERT | ROUGE★ | JAUNE -->
+  <div class="tricolor">
+    <div class="tc-v"></div>
+    <div class="tc-r">
+      <span class="tc-star">★</span>
+    </div>
+    <div class="tc-y"></div>
+  </div>
+
+  <!-- ② TOP BAR INSTITUTIONNELLE -->
+  <div class="topbar">
+    <div class="tb-item">
+      <span class="ico">🏛️</span>
+      <span><strong>Délégation Générale à la Sûreté Nationale</strong> &nbsp;|&nbsp; République du Cameroun</span>
+    </div>
+    <div class="tb-item">
+      <span class="ico">📞</span>
+      <span>Standard : <strong>(+237) 222 22 12 35</strong></span>
+    </div>
+    <div class="tb-item">
+      <span class="ico">📠</span>
+      <span>Fax : <strong>(+237) 222 22 17 52</strong></span>
+    </div>
+    <div class="tb-item">
+      <span class="ico">📧</span>
+      <a href="mailto:contact@dgsn.cm">contact@dgsn.cm</a>
+    </div>
+    <div class="tb-item">
+      <span class="ico">🕐</span>
+      <span>Lun – Ven : <strong>07h30 – 15h30</strong></span>
+    </div>
+    <div class="tb-item">
+      <span class="ico">🌐</span>
+      <a href="https://www.dgsn.cm" target="_blank">www.dgsn.cm</a>
+    </div>
+    <div class="tb-lang">
+      <button class="lb on" onclick="setLang('fr',this)">FR</button>
+      <button class="lb"    onclick="setLang('en',this)">EN</button>
+    </div>
+  </div>
+
+  <!-- ③ NAVBAR -->
+  <nav class="navbar">
+    <div class="nb-brand" onclick="showPage('home')">
+      <!-- ================================================================
+           LOGO OFFICIEL D.G.S.N CAMEROUN
+           Écusson octogonal bleu marine :
+           - Contour doré
+           - Aigle aux ailes déployées au sommet
+           - Deux rameaux de laurier encadrant
+           - Étoile dorée à 5 branches au centre
+           - Couronne intérieure dorée
+           - Bandeau rouge "POLICE" en bas
+           - Trois étoiles tricolores (vert/or/rouge)
+           ================================================================ -->
+      <svg width="50" height="60" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gShield" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1a3480"/>
+            <stop offset="100%" stop-color="#0b1d42"/>
+          </linearGradient>
+          <linearGradient id="gGold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffe040"/>
+            <stop offset="100%" stop-color="#c8900a"/>
+          </linearGradient>
+          <linearGradient id="gGold2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffd740"/>
+            <stop offset="100%" stop-color="#b07a08"/>
+          </linearGradient>
+        </defs>
+
+        <!-- ── ÉCUSSON OCTOGONAL ── -->
+        <path d="M50 3
+                 L93 18
+                 L97 62
+                 Q97 97 50 117
+                 Q3 97 3 62
+                 L7 18 Z"
+              fill="url(#gShield)" stroke="url(#gGold)" stroke-width="2.4"/>
+
+        <!-- Liseré intérieur doré -->
+        <path d="M50 9
+                 L87 22
+                 L91 62
+                 Q91 91 50 109
+                 Q9 91 9 62
+                 L13 22 Z"
+              fill="none" stroke="url(#gGold)" stroke-width="1" opacity="0.5"/>
+
+        <!-- ── AIGLE AU SOMMET ── -->
+        <!-- Aile gauche -->
+        <path d="M50 22 Q38 14 24 18 Q30 24 42 26 Z" fill="url(#gGold)"/>
+        <!-- Aile droite -->
+        <path d="M50 22 Q62 14 76 18 Q70 24 58 26 Z" fill="url(#gGold)"/>
+        <!-- Corps aigle -->
+        <ellipse cx="50" cy="27" rx="8" ry="6" fill="url(#gGold)"/>
+        <!-- Tête aigle -->
+        <circle cx="50" cy="20" r="5" fill="url(#gGold)"/>
+        <!-- Bec -->
+        <path d="M52 21 L56 23 L52 24 Z" fill="#c8102e"/>
+        <!-- Œil -->
+        <circle cx="52" cy="19.5" r="1" fill="#0b1d42"/>
+        <!-- Couronnes ailes -->
+        <path d="M28 20 Q22 16 18 20 Q22 23 28 22 Z" fill="url(#gGold2)" opacity=".7"/>
+        <path d="M72 20 Q78 16 82 20 Q78 23 72 22 Z" fill="url(#gGold2)" opacity=".7"/>
+        <!-- Serres -->
+        <path d="M45 33 L42 39 M50 34 L50 40 M55 33 L58 39"
+              stroke="url(#gGold)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+
+        <!-- ── CERCLE PRINCIPAL ── -->
+        <circle cx="50" cy="72" r="28" fill="rgba(255,255,255,0.03)" stroke="url(#gGold)" stroke-width="2.2"/>
+        <circle cx="50" cy="72" r="23" fill="none" stroke="url(#gGold2)" stroke-width=".8" opacity=".5"/>
+
+        <!-- ── ÉTOILE CENTRALE DORÉE (5 branches) ── -->
+        <!-- Étoile dessinée comme polygone pour plus de fidélité -->
+        <polygon points="50,54 53.8,65.8 66.2,65.8 56.2,73.2 60,85 50,77.6 40,85 43.8,73.2 33.8,65.8 46.2,65.8"
+                 fill="url(#gGold)"/>
+
+        <!-- ── RAMEAUX DE LAURIER ── -->
+        <!-- Gauche -->
+        <path d="M24 80 Q18 72 20 60" stroke="#007a3d" stroke-width="1.4" fill="none"/>
+        <ellipse cx="21" cy="62" rx="3.5" ry="2" fill="#007a3d" transform="rotate(-35,21,62)"/>
+        <ellipse cx="20" cy="68" rx="3.5" ry="2" fill="#007a3d" transform="rotate(-25,20,68)"/>
+        <ellipse cx="20" cy="74" rx="3.5" ry="2" fill="#007a3d" transform="rotate(-15,20,74)"/>
+        <ellipse cx="22" cy="79" rx="3.5" ry="2" fill="#007a3d" transform="rotate(-5,22,79)"/>
+        <!-- Droite -->
+        <path d="M76 80 Q82 72 80 60" stroke="#007a3d" stroke-width="1.4" fill="none"/>
+        <ellipse cx="79" cy="62" rx="3.5" ry="2" fill="#007a3d" transform="rotate(35,79,62)"/>
+        <ellipse cx="80" cy="68" rx="3.5" ry="2" fill="#007a3d" transform="rotate(25,80,68)"/>
+        <ellipse cx="80" cy="74" rx="3.5" ry="2" fill="#007a3d" transform="rotate(15,80,74)"/>
+        <ellipse cx="78" cy="79" rx="3.5" ry="2" fill="#007a3d" transform="rotate(5,78,79)"/>
+
+        <!-- ── 3 ÉTOILES TRICOLORES (haut) ── -->
+        <text x="28" y="48" text-anchor="middle" font-size="7" fill="#007a3d">★</text>
+        <text x="50" y="44" text-anchor="middle" font-size="7" fill="#f5c518">★</text>
+        <text x="72" y="48" text-anchor="middle" font-size="7" fill="#c8102e">★</text>
+
+        <!-- ── SÉPARATION ── -->
+        <line x1="10" y1="99" x2="90" y2="99" stroke="url(#gGold)" stroke-width="1.5"/>
+
+        <!-- ── BANDEAU "POLICE" ── -->
+        <rect x="14" y="100" width="72" height="15" rx="2" fill="#c8102e"/>
+        <text x="50" y="112" text-anchor="middle"
+              font-size="8.5" fill="#ffffff" font-weight="bold"
+              letter-spacing="2.5" font-family="Arial,sans-serif">POLICE</text>
+      </svg>
+
+      <div class="nb-text">
+        <div class="nb-sigla">D.G.S.N</div>
+        <div class="nb-full">Délégation Générale à la Sûreté Nationale</div>
+        <div class="nb-pays">République du Cameroun</div>
+      </div>
+    </div>
+
+    <div class="nb-nav">
+      <div class="ni on" onclick="showPage('home')">Accueil</div>
+      <div class="ni" onclick="showPage('news')">Actualités</div>
+      <div class="ni" onclick="showPage('services')">Services</div>
+      <div class="ni" onclick="showPage('contact')">Contact</div>
+    </div>
+
+    <div class="nb-right">
+      <button class="btn-cnx" id="navBtn" onclick="showPage('auth')">🔐 Connexion</button>
+    </div>
+  </nav>
+
+  <!-- ================================================================
+       PAGE ACCUEIL
+  ================================================================ -->
+  <div class="page on" id="page-home">
+    <div class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-c">
+        <div class="hero-flag">
+          <div class="hf-b" style="background:#007a3d;border-radius:2px 0 0 2px"></div>
+          <div class="hf-b" style="background:#c8102e;display:flex;align-items:center;justify-content:center">
+            <span style="color:#f5c518;font-size:10px;line-height:1">★</span>
+          </div>
+          <div class="hf-b" style="background:#f5c518;border-radius:0 2px 2px 0"></div>
+        </div>
+        <div class="hero-badge">Service Public Officiel · République du Cameroun</div>
+        <h1 class="hero-title">
+          Portail Officiel de la<br>
+          <span class="ac">Délégation Générale<br>à la Sûreté Nationale</span>
+        </h1>
+        <p class="hero-sub">
+          Suivez votre dossier CNI et passeport en ligne, consultez les listes publiées et accédez à notre assistant intelligent disponible 24h/24, 7j/7.
+        </p>
+        <div class="hero-btns">
+          <button class="btn-p" onclick="showPage('auth')">🔐 Accéder à mon espace</button>
+          <button class="btn-g" onclick="toggleChat()">💬 Assistant D.G.S.N</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-s">
+      <div class="stats-i">
+        <div class="stat"><div class="stat-v" id="s1">0</div><div class="stat-l">Dossiers traités</div></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><div class="stat-v" id="s2">0</div><div class="stat-l">CNI délivrées 2024</div></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><div class="stat-v" id="s3">0</div><div class="stat-l">Passeports délivrés</div></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><div class="stat-v" id="s4">0</div><div class="stat-l">Bureaux régionaux</div></div>
+      </div>
+    </div>
+
+    <div class="sec-w">
+      <div class="sec-hd">
+        <div class="sec-tag">Nos services</div>
+        <h2 class="sec-ti">Services en ligne</h2>
+        <p class="sec-su">Toutes vos démarches administratives simplifiées</p>
+        <div class="sec-rule"></div>
+      </div>
+      <div class="srv-g">
+        <div class="srv-c" onclick="showPage('auth')"><div class="srv-ic">🪪</div><div class="srv-ti">Carte Nationale d'Identité</div><div class="srv-de">Suivez en temps réel votre demande de CNI biométrique, du dépôt à la livraison.</div><div class="srv-mo">→ Suivre mon dossier</div></div>
+        <div class="srv-c" onclick="showPage('auth')"><div class="srv-ic">📘</div><div class="srv-ti">Passeport Biométrique</div><div class="srv-de">Consultez l'état d'avancement de votre demande de passeport et recevez des notifications.</div><div class="srv-mo">→ Suivre mon passeport</div></div>
+        <div class="srv-c" onclick="showPage('news')"><div class="srv-ic">📋</div><div class="srv-ti">Listes Publiées</div><div class="srv-de">Consultez les listes des CNI produites et des dossiers rejetés par région et par mois.</div><div class="srv-mo">→ Voir les listes</div></div>
+        <div class="srv-c" onclick="toggleChat()"><div class="srv-ic">🤖</div><div class="srv-ti">Assistant Intelligent</div><div class="srv-de">Notre IA répond à toutes vos questions sur vos dossiers, procédures et délais, 24h/24.</div><div class="srv-mo">→ Démarrer le chat</div></div>
+        <div class="srv-c"><div class="srv-ic">🔔</div><div class="srv-ti">Alertes SMS &amp; Email</div><div class="srv-de">Recevez des notifications automatiques à chaque changement de statut de votre dossier.</div><div class="srv-mo">→ Activer les alertes</div></div>
+        <div class="srv-c" onclick="showPage('contact')"><div class="srv-ic">🗺️</div><div class="srv-ti">Bureaux Régionaux</div><div class="srv-de">Localisez nos 58 commissariats et centres D.G.S.N partout au Cameroun.</div><div class="srv-mo">→ Trouver un bureau</div></div>
+      </div>
+    </div>
+
+    <!-- FOOTER ACCUEIL -->
+    <div class="ft">
+      <div class="ft-i">
+        <div class="ft-top">
+          <div class="ft-b">
+            <div class="ft-ti">D.G.S.N – Délégation Générale à la Sûreté Nationale</div>
+            <div class="ft-fu">République du Cameroun · Police Nationale<br>Siège : Yaoundé, Centre, Cameroun</div>
+            <div class="devise">✦&nbsp; Paix – Travail – Patrie &nbsp;✦</div>
+          </div>
+          <div class="ft-cols">
+            <div class="ft-col">
+              <h4>Liens utiles</h4>
+              <a href="#">Portail CNI</a>
+              <a href="#">Portail Passeport</a>
+              <a href="#">Listes publiées</a>
+              <a href="#">Bureaux régionaux</a>
+            </div>
+            <div class="ft-col">
+              <h4>Contacts officiels</h4>
+              <p>📞 (+237) 222 22 12 35</p>
+              <p>📠 (+237) 222 22 17 52</p>
+              <p>📧 contact@dgsn.cm</p>
+              <p>🌐 www.dgsn.cm</p>
+            </div>
+            <div class="ft-col">
+              <h4>Horaires d'ouverture</h4>
+              <p>Lundi : 07h30 – 15h30</p>
+              <p>Mardi : 07h30 – 15h30</p>
+              <p>Mercredi : 07h30 – 15h30</p>
+              <p>Jeudi : 07h30 – 15h30</p>
+              <p>Vendredi : 07h30 – 15h30</p>
+            </div>
+          </div>
+        </div>
+        <div class="ft-bot">
+          <p>© 2025 D.G.S.N · Délégation Générale à la Sûreté Nationale · République du Cameroun · Tous droits réservés</p>
+          <div class="ft-flag">
+            <div class="ff" style="background:#007a3d"></div>
+            <div class="ff" style="background:#c8102e;display:flex;align-items:center;justify-content:center"><span style="color:#f5c518;font-size:9px;line-height:1">★</span></div>
+            <div class="ff" style="background:#f5c518"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       PAGE AUTH
+  ================================================================ -->
+  <div class="page" id="page-auth">
+    <div class="auth-p">
+      <div class="auth-bx">
+        <div class="auth-hd">
+          <svg width="62" height="74" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto">
+            <defs>
+              <linearGradient id="gs3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a3480"/><stop offset="100%" stop-color="#0b1d42"/></linearGradient>
+              <linearGradient id="gg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffe040"/><stop offset="100%" stop-color="#c8900a"/></linearGradient>
+            </defs>
+            <path d="M50 3 L93 18 L97 62 Q97 97 50 117 Q3 97 3 62 L7 18 Z" fill="url(#gs3)" stroke="url(#gg3)" stroke-width="2.4"/>
+            <path d="M50 9 L87 22 L91 62 Q91 91 50 109 Q9 91 9 62 L13 22 Z" fill="none" stroke="url(#gg3)" stroke-width="1" opacity="0.5"/>
+            <path d="M50 22 Q38 14 24 18 Q30 24 42 26 Z" fill="url(#gg3)"/>
+            <path d="M50 22 Q62 14 76 18 Q70 24 58 26 Z" fill="url(#gg3)"/>
+            <ellipse cx="50" cy="27" rx="8" ry="6" fill="url(#gg3)"/>
+            <circle cx="50" cy="20" r="5" fill="url(#gg3)"/>
+            <path d="M52 21 L56 23 L52 24 Z" fill="#c8102e"/>
+            <circle cx="52" cy="19.5" r="1" fill="#0b1d42"/>
+            <path d="M45 33 L42 39 M50 34 L50 40 M55 33 L58 39" stroke="url(#gg3)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+            <circle cx="50" cy="72" r="28" fill="rgba(255,255,255,0.03)" stroke="url(#gg3)" stroke-width="2.2"/>
+            <polygon points="50,54 53.8,65.8 66.2,65.8 56.2,73.2 60,85 50,77.6 40,85 43.8,73.2 33.8,65.8 46.2,65.8" fill="url(#gg3)"/>
+            <path d="M24 80 Q18 72 20 60" stroke="#007a3d" stroke-width="1.4" fill="none"/>
+            <ellipse cx="21" cy="62" rx="3.5" ry="2" fill="#007a3d" transform="rotate(-35,21,62)"/>
+            <ellipse cx="20" cy="68" rx="3.5" ry="2" fill="#007a3d" transform="rotate(-25,20,68)"/>
+            <ellipse cx="20" cy="74" rx="3.5" ry="2" fill="#007a3d" transform="rotate(-15,20,74)"/>
+            <ellipse cx="22" cy="79" rx="3.5" ry="2" fill="#007a3d" transform="rotate(-5,22,79)"/>
+            <path d="M76 80 Q82 72 80 60" stroke="#007a3d" stroke-width="1.4" fill="none"/>
+            <ellipse cx="79" cy="62" rx="3.5" ry="2" fill="#007a3d" transform="rotate(35,79,62)"/>
+            <ellipse cx="80" cy="68" rx="3.5" ry="2" fill="#007a3d" transform="rotate(25,80,68)"/>
+            <ellipse cx="80" cy="74" rx="3.5" ry="2" fill="#007a3d" transform="rotate(15,80,74)"/>
+            <ellipse cx="78" cy="79" rx="3.5" ry="2" fill="#007a3d" transform="rotate(5,78,79)"/>
+            <text x="28" y="48" text-anchor="middle" font-size="7" fill="#007a3d">★</text>
+            <text x="50" y="44" text-anchor="middle" font-size="7" fill="#f5c518">★</text>
+            <text x="72" y="48" text-anchor="middle" font-size="7" fill="#c8102e">★</text>
+            <line x1="10" y1="99" x2="90" y2="99" stroke="url(#gg3)" stroke-width="1.5"/>
+            <rect x="14" y="100" width="72" height="15" rx="2" fill="#c8102e"/>
+            <text x="50" y="112" text-anchor="middle" font-size="8.5" fill="#fff" font-weight="bold" letter-spacing="2.5" font-family="Arial,sans-serif">POLICE</text>
+          </svg>
+          <div class="auth-ti" id="authTi">Connexion</div>
+          <div class="auth-su">D.G.S.N – Délégation Générale à la Sûreté Nationale<br>République du Cameroun</div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab on" id="tL" onclick="switchTab('l')">Connexion</button>
+          <button class="tab"    id="tR" onclick="switchTab('r')">Inscription</button>
+        </div>
+
+        <div id="fL">
+          <div class="fg" style="margin-bottom:14px">
+            <div class="fl">Type de compte</div>
+            <div class="role-row">
+              <div class="ro on" id="rU" onclick="pickRole('u')"><div class="ri">👤</div><div class="rn">Citoyen</div></div>
+              <div class="ro"    id="rA" onclick="pickRole('a')"><div class="ri">🛡️</div><div class="rn">Administrateur</div></div>
+            </div>
+          </div>
+          <div class="fg"><label class="fl">Identifiant</label><input type="text" id="lid" placeholder="Identifiant ou numéro CNI"></div>
+          <div class="fg"><label class="fl">Mot de passe</label><input type="password" id="lpw" placeholder="••••••••"></div>
+          <button class="auth-btn" onclick="doLogin()">🔐 Se connecter</button>
+          <div class="auth-note">Démo : <span style="color:var(--gold)">admin / admin123</span> &nbsp;·&nbsp; <span style="color:var(--gold)">usager / pass123</span></div>
+        </div>
+
+        <div id="fR" style="display:none">
+          <div class="frow">
+            <div class="fg"><label class="fl">Prénom</label><input type="text" placeholder="Jean-Paul"></div>
+            <div class="fg"><label class="fl">Nom</label><input type="text" placeholder="NKODO"></div>
+          </div>
+          <div class="fg"><label class="fl">Email</label><input type="email" placeholder="vous@email.com"></div>
+          <div class="fg"><label class="fl">Téléphone</label><input type="tel" placeholder="+237 6XX XXX XXX"></div>
+          <div class="fg"><label class="fl">N° CNI (si disponible)</label><input type="text" placeholder="CM-XXXX-XXXXX"></div>
+          <div class="fg"><label class="fl">Mot de passe</label><input type="password" placeholder="8 caractères minimum"></div>
+          <button class="auth-btn" onclick="doReg()">Créer mon compte</button>
+        </div>
+
+        <div class="auth-note" style="margin-top:16px"><a class="lnk" onclick="showPage('home')">← Retour au portail</a></div>
+      </div>
+    </div>
+    <div class="ft" style="padding:12px 28px">
+      <p style="text-align:center;font-size:.71rem;color:var(--muted)">© 2025 D.G.S.N · Délégation Générale à la Sûreté Nationale &nbsp;·&nbsp; <strong style="color:var(--gold)">✦ Paix – Travail – Patrie ✦</strong></p>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       DASHBOARD USAGER
+  ================================================================ -->
+  <div class="page" id="page-dashboard">
+    <div class="dash-sh">
+      <div class="dash-sd">
+        <div class="sd-u">
+          <div class="sd-av" id="sdAv">NJ</div>
+          <div><div class="sd-nm" id="sdNm">NKODO Jean-Paul</div><div class="sd-rl">Citoyen</div></div>
+        </div>
+        <div class="sd-nav">
+          <div class="sd-sec">Mon Espace</div>
+          <div class="sd-it on" onclick="dSec('ov',this)"><span class="sd-ic">🏠</span>Tableau de bord</div>
+          <div class="sd-it"    onclick="dSec('cn',this)"><span class="sd-ic">🪪</span>Dossier CNI</div>
+          <div class="sd-it"    onclick="dSec('pp',this)"><span class="sd-ic">📘</span>Passeport</div>
+          <div class="sd-it"    onclick="dSec('no',this)"><span class="sd-ic">🔔</span>Notifications<span class="n-pill">3</span></div>
+          <div class="sd-it"    onclick="dSec('ia',this)"><span class="sd-ic">💬</span>Historique IA</div>
+          <div class="sd-sec">Général</div>
+          <div class="sd-it" onclick="showPage('news')"><span class="sd-ic">📰</span>Actualités</div>
+          <div class="sd-it" onclick="showPage('contact')"><span class="sd-ic">📞</span>Contact</div>
+        </div>
+        <div class="sd-ft"><div class="sd-it" onclick="doLogout()"><span class="sd-ic">🚪</span>Déconnexion</div></div>
+      </div>
+      <div class="dash-bd" id="dBd"></div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       DASHBOARD ADMIN
+  ================================================================ -->
+  <div class="page" id="page-admin">
+    <div class="dash-sh">
+      <div class="dash-sd">
+        <div class="sd-u">
+          <div class="sd-av" style="background:var(--navy3)">AD</div>
+          <div><div class="sd-nm">Administrateur</div><div class="sd-rl" style="color:var(--red)">D.G.S.N Admin</div></div>
+        </div>
+        <div class="sd-nav">
+          <div class="sd-sec">Administration</div>
+          <div class="sd-it on" onclick="aSec('ov',this)"><span class="sd-ic">📊</span>Vue générale</div>
+          <div class="sd-it"    onclick="aSec('do',this)"><span class="sd-ic">📁</span>Dossiers</div>
+          <div class="sd-it"    onclick="aSec('pu',this)"><span class="sd-ic">✏️</span>Publier</div>
+          <div class="sd-it"    onclick="aSec('us',this)"><span class="sd-ic">👥</span>Utilisateurs</div>
+          <div class="sd-it"    onclick="aSec('lo',this)"><span class="sd-ic">🤖</span>Logs IA</div>
+        </div>
+        <div class="sd-ft"><div class="sd-it" onclick="doLogout()"><span class="sd-ic">🚪</span>Déconnexion</div></div>
+      </div>
+      <div class="dash-bd" id="aBd"></div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       ACTUALITÉS
+  ================================================================ -->
+  <div class="page" id="page-news">
+    <div class="page-banner">
+      <h1>📰 Actualités &amp; Communiqués</h1>
+      <p>Informations officielles – D.G.S.N · Délégation Générale à la Sûreté Nationale · République du Cameroun</p>
+    </div>
+    <div class="news-g" id="newsG"></div>
+    <div class="ft" style="padding:12px 28px"><p style="text-align:center;font-size:.71rem;color:var(--muted)">© 2025 D.G.S.N · Délégation Générale à la Sûreté Nationale &nbsp;·&nbsp; <strong style="color:var(--gold)">✦ Paix – Travail – Patrie ✦</strong></p></div>
+  </div>
+
+  <!-- ================================================================
+       SERVICES
+  ================================================================ -->
+  <div class="page" id="page-services">
+    <div class="page-banner"><h1>🛎️ Nos Services</h1><p>D.G.S.N – Délégation Générale à la Sûreté Nationale · Portail officiel</p></div>
+    <div class="sec-w" style="padding-top:28px">
+      <div class="srv-g">
+        <div class="srv-c"><div class="srv-ic">🪪</div><div class="srv-ti">Carte Nationale d'Identité</div><div class="srv-de">Demande, renouvellement et suivi de la CNI biométrique camerounaise.</div></div>
+        <div class="srv-c"><div class="srv-ic">📘</div><div class="srv-ti">Passeport Biométrique</div><div class="srv-de">Suivi de production et notification automatique à chaque étape.</div></div>
+        <div class="srv-c"><div class="srv-ic">🚗</div><div class="srv-ti">Permis de Conduire</div><div class="srv-de">Procédures d'obtention et de renouvellement du permis de conduire.</div></div>
+        <div class="srv-c"><div class="srv-ic">📋</div><div class="srv-ti">Listes Publiées</div><div class="srv-de">CNI produites et dossiers rejetés consultables par région et par mois.</div></div>
+        <div class="srv-c"><div class="srv-ic">🏢</div><div class="srv-ti">Bureaux Régionaux</div><div class="srv-de">Localisez nos 58 centres D.G.S.N partout au Cameroun.</div></div>
+        <div class="srv-c"><div class="srv-ic">⚠️</div><div class="srv-ti">Signalement</div><div class="srv-de">Signalez une fraude documentaire ou une perte de pièce d'identité.</div></div>
+      </div>
+    </div>
+    <div class="ft" style="padding:12px 28px"><p style="text-align:center;font-size:.71rem;color:var(--muted)">© 2025 D.G.S.N · Délégation Générale à la Sûreté Nationale &nbsp;·&nbsp; <strong style="color:var(--gold)">✦ Paix – Travail – Patrie ✦</strong></p></div>
+  </div>
+
+  <!-- ================================================================
+       CONTACT
+  ================================================================ -->
+  <div class="page" id="page-contact">
+    <div class="page-banner"><h1>📞 Nous Contacter</h1><p>D.G.S.N – Délégation Générale à la Sûreté Nationale · République du Cameroun</p></div>
+    <div style="padding:28px;max-width:740px;margin:0 auto;width:100%">
+      <div class="fc">
+        <h3>📬 Envoyer un message</h3>
+        <div class="frow">
+          <div class="fg"><label class="fl">Nom complet</label><input type="text" placeholder="NKODO Jean-Paul"></div>
+          <div class="fg"><label class="fl">Email</label><input type="email" placeholder="vous@email.com"></div>
+        </div>
+        <div class="fg"><label class="fl">Sujet</label><select><option>Suivi dossier CNI</option><option>Suivi passeport</option><option>Dossier rejeté</option><option>Problème technique</option><option>Autre</option></select></div>
+        <div class="fg"><label class="fl">Message</label><textarea rows="4" placeholder="Décrivez votre demande en détail..."></textarea></div>
+        <div style="display:flex;gap:10px"><button class="btn-go" onclick="toast('Message envoyé ! Réponse sous 48h ouvrables.','ok')">Envoyer</button><button class="btn-sc">Annuler</button></div>
+      </div>
+      <div class="fc">
+        <h3>📍 Coordonnées officielles</h3>
+        <p style="font-size:.84rem;color:var(--light);line-height:2.3">
+          🏛️ <strong>D.G.S.N – Délégation Générale à la Sûreté Nationale</strong><br>
+          📍 Yaoundé, Centre, République du Cameroun<br>
+          📞 Standard : (+237) 222 22 12 35<br>
+          📠 Fax : (+237) 222 22 17 52<br>
+          🌐 <a href="https://www.dgsn.cm" target="_blank" style="color:var(--gold)">www.dgsn.cm</a><br>
+          📧 contact@dgsn.cm<br>
+          🕐 Lundi – Vendredi : 07h30 – 15h30
+        </p>
+      </div>
+    </div>
+    <div class="ft" style="padding:12px 28px"><p style="text-align:center;font-size:.71rem;color:var(--muted)">© 2025 D.G.S.N · Délégation Générale à la Sûreté Nationale &nbsp;·&nbsp; <strong style="color:var(--gold)">✦ Paix – Travail – Patrie ✦</strong></p></div>
+  </div>
+
+</div><!-- /shell -->
+
+<!-- ================================================================
+     JAVASCRIPT
+================================================================ -->
+<script>
+/* ── ÉTAT ── */
+let CU=null, chatOpen=false, chatHist=[], selR='u';
+const USERS={
+  admin: {role:'admin', name:'Administrateur D.G.S.N', ini:'AD', pwd:'admin123'},
+  usager:{role:'usager',name:'NKODO Jean-Paul',         ini:'NJ', pwd:'pass123'},
+};
+
+/* ── NAV ── */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.getElementById('page-'+id).classList.add('on');
+  window.scrollTo(0,0);
+  const ns=document.querySelectorAll('.ni');
+  ['home','news','services','contact'].forEach((n,i)=>ns[i]?.classList.toggle('on',n===id));
+  if(id==='dashboard')rDash('ov');
+  if(id==='admin')    rAdmin('ov');
+  if(id==='news')     rNews();
+  updNav();
+}
+function updNav(){
+  const b=document.getElementById('navBtn');
+  if(CU){b.textContent=CU.role==='admin'?'⚙️ Admin':'👤 Mon espace';b.onclick=()=>showPage(CU.role==='admin'?'admin':'dashboard');}
+  else{b.textContent='🔐 Connexion';b.onclick=()=>showPage('auth');}
+}
+
+/* ── AUTH ── */
+function switchTab(t){
+  document.getElementById('tL').classList.toggle('on',t==='l');
+  document.getElementById('tR').classList.toggle('on',t==='r');
+  document.getElementById('fL').style.display=t==='l'?'':'none';
+  document.getElementById('fR').style.display=t==='r'?'':'none';
+  document.getElementById('authTi').textContent=t==='l'?'Connexion':'Créer un compte';
+}
+function pickRole(r){
+  selR=r;
+  document.getElementById('rU').classList.toggle('on',r==='u');
+  document.getElementById('rA').classList.toggle('on',r==='a');
+}
+function doLogin(){
+  const id=document.getElementById('lid').value.trim();
+  const pw=document.getElementById('lpw').value;
+  const u=USERS[id];
+  if(!u||u.pwd!==pw){toast('Identifiants incorrects.','err');return;}
+  CU=u;
+  document.getElementById('sdNm').textContent=u.name;
+  document.getElementById('sdAv').textContent=u.ini;
+  toast('Bienvenue, '+u.name.split(' ')[0]+' !','ok');
+  updNav(); showPage(u.role==='admin'?'admin':'dashboard');
+}
+function doReg(){toast('Compte créé ! Vous pouvez vous connecter.','ok');switchTab('l');}
+function doLogout(){CU=null;toast('Déconnecté.','inf');updNav();showPage('home');}
+function setLang(l,el){
+  document.querySelectorAll('.lb').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  toast(l==='fr'?'🇫🇷 Langue : Français':'🇬🇧 Language : English','inf');
+}
+
+/* ── DASHBOARD USAGER ── */
+function dSec(s,el){document.querySelectorAll('#page-dashboard .sd-it').forEach(i=>i.classList.remove('on'));el?.classList.add('on');rDash(s);}
+function rDash(s){
+  const m=document.getElementById('dBd');
+  const dt=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+  if(s==='ov'){m.innerHTML=`
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:10px">
+      <div><h1 style="font-family:var(--font-h);font-size:1.52rem;font-weight:900">Bonjour, ${CU?CU.name.split(' ')[0]:'Jean-Paul'} 👋</h1>
+      <p style="font-size:.83rem;color:var(--muted);margin-top:4px">État de vos dossiers au ${dt}</p></div>
+      <span class="badge bp">⏳ Dossier en cours</span>
+    </div>
+    <div class="kpi-g">
+      <div class="kpi"><div class="kpi-ic">🪪</div><div class="kpi-v">1</div><div class="kpi-l">Dossier CNI</div></div>
+      <div class="kpi"><div class="kpi-ic">📘</div><div class="kpi-v">1</div><div class="kpi-l">Demande Passeport</div></div>
+      <div class="kpi k2"><div class="kpi-ic">🔔</div><div class="kpi-v">3</div><div class="kpi-l">Notifications</div></div>
+      <div class="kpi k2"><div class="kpi-ic">💬</div><div class="kpi-v">12</div><div class="kpi-l">Échanges IA</div></div>
+    </div>
+    <div class="s-lb">🪪 Carte Nationale d'Identité</div>
+    ${dosC('CNI – Renouvellement','CM-2024-087432','En production',[1,1,1,0])}
+    <div class="s-lb" style="margin-top:22px">📘 Passeport Biométrique</div>
+    ${dosC('Passeport Biométrique','PP-2024-003891','En traitement',[1,1,0,0])}
+    <div class="s-lb" style="margin-top:22px">🔔 Notifications récentes</div>
+    <div class="nb">
+      ${nR('Votre dossier CNI <strong>CM-2024-087432</strong> est en production.','2 heures',false)}
+      ${nR('Pièce manquante pour votre passeport <strong>PP-2024-003891</strong>.','1 jour',false)}
+      ${nR('Bienvenue sur le portail officiel D.G.S.N Cameroun.','5 jours',true)}
+    </div>`;}
+  else if(s==='ia'){m.innerHTML=`
+    <div style="margin-bottom:22px">
+      <h1 style="font-family:var(--font-h);font-size:1.52rem;font-weight:900">💬 Historique IA</h1>
+      <p style="font-size:.83rem;color:var(--muted);margin-top:4px">Vos échanges avec l'assistant D.G.S.N</p>
+    </div>
+    <div class="nb">${chatHist.length?chatHist.map(h=>`<div class="nr"><div class="nd ${h.role==='user'?'':'r'}"></div>
+    <div><div class="nt"><strong>${h.role==='user'?'Vous':'Assistant D.G.S.N'} :</strong> ${h.content}</div></div></div>`).join(''):
+    `<div style="padding:30px;text-align:center;color:var(--muted)">Aucun échange enregistré.<br>
+    <a style="color:var(--gold);cursor:pointer;font-weight:700" onclick="toggleChat()">Démarrer une conversation →</a></div>`}</div>`;}
+  else{m.innerHTML=`<h1 style="font-family:var(--font-h);font-size:1.4rem;margin-bottom:10px">${s.toUpperCase()}</h1><p style="color:var(--muted)">Section en développement.</p>`;}
+}
+function dosC(nm,ref,st,dn){
+  const steps=['Dépôt','Vérification','Production','Livraison'];
+  const bc=dn[2]?'bp':dn[1]?'bp':'bi';
+  return `<div class="dos-c"><div class="dos-hd"><div><div class="dos-nm">${nm}</div><div class="dos-rf">Réf. ${ref}</div></div><span class="badge ${bc}">${st}</span></div>
+  <div class="tl">${steps.map((s,i)=>{const d=dn[i],c=!d&&(i===0||dn[i-1]);return`<div class="tl-s"><div class="tl-d ${d?'done':c?'curr':''}">${d?'✓':i+1}</div><div class="tl-l ${c?'curr':''}">${s}</div></div>`}).join('')}</div></div>`;}
+function nR(t,ti,r){return`<div class="nr"><div class="nd ${r?'r':''}"></div><div><div class="nt">${t}</div><div class="nt-t">Il y a ${ti}</div></div></div>`;}
+
+/* ── DASHBOARD ADMIN ── */
+function aSec(s,el){document.querySelectorAll('#page-admin .sd-it').forEach(i=>i.classList.remove('on'));el?.classList.add('on');rAdmin(s);}
+function rAdmin(s){
+  const m=document.getElementById('aBd');
+  if(s==='ov'){m.innerHTML=`
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:10px">
+      <div><h1 style="font-family:var(--font-h);font-size:1.52rem;font-weight:900">Tableau de Bord Administrateur</h1>
+      <p style="font-size:.83rem;color:var(--muted);margin-top:4px">D.G.S.N · Cellule Communication · ${new Date().toLocaleDateString('fr-FR')}</p></div>
+      <span class="badge bi">⚙️ Admin</span>
+    </div>
+    <div class="kpi-g">
+      <div class="kpi"><div class="kpi-ic">📁</div><div class="kpi-v">4 281</div><div class="kpi-l">Dossiers actifs</div></div>
+      <div class="kpi"><div class="kpi-ic">✅</div><div class="kpi-v">1 832</div><div class="kpi-l">Produits ce mois</div></div>
+      <div class="kpi k2"><div class="kpi-ic">❌</div><div class="kpi-v">47</div><div class="kpi-l">Dossiers rejetés</div></div>
+      <div class="kpi k2"><div class="kpi-ic">👥</div><div class="kpi-v">12 450</div><div class="kpi-l">Usagers inscrits</div></div>
+    </div>
+    <div class="s-lb">📁 Dossiers récents</div>
+    <div class="tw"><table class="dt">
+      <thead><tr><th>Référence</th><th>Type</th><th>Demandeur</th><th>Statut</th><th>Date</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td style="font-family:var(--font-m);font-size:.75rem">CM-2024-087432</td><td>CNI</td><td>NKODO Jean-Paul</td><td><span class="badge bp">En production</span></td><td>12 Jan 2025</td><td><button class="ab">Voir</button></td></tr>
+        <tr><td style="font-family:var(--font-m);font-size:.75rem">CM-2024-091011</td><td>CNI</td><td>BIYONG Marie</td><td><span class="badge bo">Livré</span></td><td>10 Jan 2025</td><td><button class="ab">Voir</button></td></tr>
+        <tr><td style="font-family:var(--font-m);font-size:.75rem">PP-2024-003891</td><td>Passeport</td><td>NKODO Jean-Paul</td><td><span class="badge bp">Traitement</span></td><td>8 Jan 2025</td><td><button class="ab">Voir</button></td></tr>
+        <tr><td style="font-family:var(--font-m);font-size:.75rem">CM-2024-088204</td><td>CNI</td><td>EBOLO Patrick</td><td><span class="badge br">Rejeté</span></td><td>5 Jan 2025</td><td><button class="ab">Voir</button></td></tr>
+      </tbody>
+    </table></div>`;}
+  else if(s==='pu'){m.innerHTML=`
+    <div style="margin-bottom:22px"><h1 style="font-family:var(--font-h);font-size:1.52rem;font-weight:900">✏️ Publier un contenu</h1>
+    <p style="font-size:.83rem;color:var(--muted);margin-top:4px">Gérez les actualités et communiqués officiels D.G.S.N</p></div>
+    <div class="fc"><h3>Nouvel article / communiqué</h3>
+      <div class="fg"><label class="fl">Titre</label><input type="text" placeholder="Titre de l'article"></div>
+      <div class="fg"><label class="fl">Catégorie</label><select><option>Communiqué officiel</option><option>Actualité</option><option>Alerte</option><option>Liste publiée CNI</option><option>Liste publiée Passeport</option></select></div>
+      <div class="fg"><label class="fl">Contenu</label><textarea rows="5" placeholder="Rédigez votre article..."></textarea></div>
+      <div style="display:flex;gap:10px"><button class="btn-go" onclick="toast('Article publié !','ok')">📢 Publier</button><button class="btn-sc" onclick="toast('Brouillon sauvegardé.','inf')">Brouillon</button></div>
+    </div>`;}
+  else if(s==='lo'){m.innerHTML=`
+    <div style="margin-bottom:22px"><h1 style="font-family:var(--font-h);font-size:1.52rem;font-weight:900">🤖 Logs de l'Assistant IA</h1></div>
+    <div class="tw"><table class="dt">
+      <thead><tr><th>Utilisateur</th><th>Question</th><th>Heure</th><th>Statut</th></tr></thead>
+      <tbody>
+        <tr><td>NKODO Jean-Paul</td><td>Où en est mon dossier CNI ?</td><td>14:32</td><td><span class="badge bo">Répondu</span></td></tr>
+        <tr><td>Anonyme</td><td>Listes CNI produites région Centre ?</td><td>13:15</td><td><span class="badge bo">Répondu</span></td></tr>
+        <tr><td>BIYONG Marie</td><td>Mon passeport est-il prêt ?</td><td>11:02</td><td><span class="badge bo">Répondu</span></td></tr>
+      </tbody>
+    </table></div>`;}
+  else{m.innerHTML=`<h1 style="font-family:var(--font-h);font-size:1.4rem;margin-bottom:10px">${s.toUpperCase()}</h1><p style="color:var(--muted)">Section en développement.</p>`;}
+}
+
+/* ── ACTUALITÉS ── */
+const NEWS=[
+  {ic:'📋',cat:'Liste publiée',ti:'CNI produites – Région Centre Janvier 2025',ex:'La liste complète des CNI produites pour la région Centre est disponible. Vérifiez si votre carte est prête.',dt:'12 Jan 2025',vw:'4 821'},
+  {ic:'📢',cat:'Communiqué officiel',ti:'Délais de production des passeports biométriques',ex:'Suite à une forte demande, les délais sont portés à 6 semaines. La D.G.S.N présente ses excuses.',dt:'8 Jan 2025',vw:'2 134'},
+  {ic:'⚠️',cat:'Alerte',ti:'Dossiers CNI rejetés – Région Littoral',ex:'Plusieurs dossiers ont été rejetés pour non-conformité. Consultez la liste et présentez-vous au bureau D.G.S.N.',dt:'5 Jan 2025',vw:'1 890'},
+  {ic:'🏛️',cat:'Actualité',ti:'Ouverture d\'un nouveau bureau D.G.S.N à Bafoussam',ex:'Un nouveau centre de traitement des CNI et passeports ouvre le 20 janvier pour mieux servir la région de l\'Ouest.',dt:'3 Jan 2025',vw:'3 201'},
+  {ic:'🤝',cat:'Partenariat',ti:'D.G.S.N – MTN Cameroun : notifications SMS automatiques',ex:'La D.G.S.N s\'associe à MTN pour l\'envoi de notifications SMS à chaque mise à jour de dossier.',dt:'28 Déc 2024',vw:'5 607'},
+  {ic:'🏆',cat:'Communiqué officiel',ti:'Bilan 2024 : plus d\'1 million de CNI délivrées',ex:'La D.G.S.N enregistre un record historique de délivrance de cartes nationales d\'identité biométriques.',dt:'31 Déc 2024',vw:'8 320'},
+];
+function rNews(){document.getElementById('newsG').innerHTML=NEWS.map(n=>`
+  <div class="nc" onclick="toast('Article complet sur www.dgsn.cm','inf')">
+    <div class="nc-th">${n.ic}</div>
+    <div class="nc-bd">
+      <div class="nc-cat">${n.cat}</div>
+      <div class="nc-ti">${n.ti}</div>
+      <div class="nc-ex">${n.ex}</div>
+      <div class="nc-ft"><span>📅 ${n.dt}</span><span>👁 ${n.vw}</span></div>
+    </div>
+  </div>`).join('');}
+
+/* ── CHATBOT IA ── */
+const SYS=`Tu es l'assistant officiel du portail web de la D.G.S.N Cameroun (Délégation Générale à la Sûreté Nationale).
+Tu aides les citoyens camerounais à :
+- Suivre leur dossier de CNI biométrique
+- Suivre leur demande de passeport biométrique
+- Consulter les listes des cartes produites et les dossiers rejetés
+- Comprendre les délais et procédures officielles
+Infos officielles : CNI = 4 à 8 semaines. Passeport = 6 à 10 semaines.
+Listes publiées mensuellement sur www.dgsn.cm.
+Standard : (+237) 222 22 12 35. Horaires : Lun–Ven 07h30–15h30.
+Tu ne révèles jamais de données personnelles sensibles.
+Redirige vers www.dgsn.cm si tu ne peux pas répondre.
+Sois clair, concis, professionnel. Max 4 phrases. Réponds en français sauf si l'utilisateur écrit en anglais.`;
+
+const SUGS=['Où en est mon dossier CNI ?','Délais passeport biométrique','Listes CNI produites – Centre','Dossier rejeté : que faire ?','Contacts D.G.S.N'];
+
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('chatWin').classList.toggle('open',chatOpen);
+  document.getElementById('fabN').style.display='none';
+  if(chatOpen&&chatHist.length===0){
+    addBot('Bienvenue sur le portail officiel de la D.G.S.N Cameroun. 🇨🇲\n\nJe suis votre assistant virtuel. Je peux vous aider à suivre votre dossier CNI ou passeport, consulter les listes publiées et répondre à toutes vos questions.\n\nComment puis-je vous aider ?');
+    rSugs();
+  }
+}
+function rSugs(){document.getElementById('cSu').innerHTML=SUGS.slice(0,4).map(s=>`<div class="cs" onclick="sendSug('${s}')">${s}</div>`).join('');}
+function addBot(txt){
+  const c=document.getElementById('cBd');
+  const t=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  const d=document.createElement('div');d.className='m b';
+  d.innerHTML=`<div class="m-av">👮</div><div><div class="m-bb">${txt.replace(/\n/g,'<br>')}</div><div class="m-t">${t}</div></div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+  chatHist.push({role:'assistant',content:txt});
+}
+function addUser(txt){
+  const c=document.getElementById('cBd');
+  const t=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  const d=document.createElement('div');d.className='m u';
+  d.innerHTML=`<div><div class="m-bb">${txt}</div><div class="m-t" style="text-align:right">${t}</div></div><div class="m-av">👤</div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+  chatHist.push({role:'user',content:txt});
+}
+function showTyp(){
+  const c=document.getElementById('cBd');const d=document.createElement('div');d.className='m b';d.id='typEl';
+  d.innerHTML=`<div class="m-av">👮</div><div class="m-bb" style="padding:12px 13px"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+function hideTyp(){document.getElementById('typEl')?.remove();}
+async function sendMsg(){
+  const inp=document.getElementById('cIn');const txt=inp.value.trim();if(!txt)return;
+  inp.value='';document.getElementById('cSu').innerHTML='';addUser(txt);showTyp();
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,
+    messages:chatHist.filter(h=>h.role==='user'||h.role==='assistant').slice(-12)})});
+    const data=await r.json();hideTyp();
+    addBot(data.content?.[0]?.text||'Je ne peux pas répondre maintenant. Consultez www.dgsn.cm');
+  }catch(e){hideTyp();addBot('⚠️ Connexion impossible. Consultez www.dgsn.cm ou appelez le (+237) 222 22 12 35');}
+  rSugs();
+}
+function sendSug(t){document.getElementById('cIn').value=t;sendMsg();}
+
+/* ── TOAST ── */
+function toast(msg,type='inf'){
+  const w=document.getElementById('tz');
+  const e=document.createElement('div');e.className=`toast ${type}`;
+  e.innerHTML={ok:'✅',err:'❌',inf:'ℹ️'}[type]+' '+msg;
+  w.appendChild(e);
+  setTimeout(()=>e.style.opacity='0',3500);
+  setTimeout(()=>e.remove(),4000);
+}
+
+/* ── COMPTEURS ── */
+function cnt(id,v){
+  const el=document.getElementById(id);if(!el)return;
+  let n=0,s=Math.ceil(v/50);
+  const t=setInterval(()=>{n=Math.min(n+s,v);el.textContent=n.toLocaleString('fr-FR');if(n>=v)clearInterval(t);},26);
+}
+window.addEventListener('load',()=>setTimeout(()=>{cnt('s1',125834);cnt('s2',98200);cnt('s3',27643);cnt('s4',58);},350));
+</script>
+</body>
+</html>
